@@ -130,7 +130,7 @@ class RawKeyPress(enum.IntEnum):
             return RawKeyPress(ord(key))
         elif key.lower() in special_keys:
             return special_keys[key.lower()]
-        
+
         raise ValueError(f"Cannot parse the given key {key}.")
 
 def render_ascii_map(map: np.array, font: ImageFont, is_ascii_map=False) -> np.array:
@@ -239,7 +239,7 @@ class NethackGymnasiumWrapper(Env):
         # NLE / Minihack still use the old env.seed() approach
         # seed=None also generates a new random seed which is not controlled by us
         # So easiest way to prevent this is by using our own random generator
-        # As our generator will be deterministic if reset was called with a seed 
+        # As our generator will be deterministic if reset was called with a seed
         if seed is None:
             seed = self.np_random.integers(sys.maxsize)
         self.env.seed(core=seed, disp=seed, reseed=False)
@@ -256,11 +256,11 @@ class NethackGymnasiumWrapper(Env):
     @property
     def waiting_for_yn(self) -> bool:
         return bool(self.env.last_observation[self.env._internal_index][1])
-    
+
     @property
     def waiting_for_line(self) -> bool:
         return bool(self.env.last_observation[self.env._internal_index][2])
-    
+
     @property
     def waiting_for_space(self) -> bool:
         return bool(self.env.last_observation[self.env._internal_index][3])
